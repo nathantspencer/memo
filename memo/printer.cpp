@@ -28,8 +28,10 @@ void printDateStamp()
     
     // print zero-padded date
     std::cout << std::setfill('0') << std::setw(2)
-    << (local->tm_mon + 1) << '-'
-    << local->tm_mday << '-'
+    << (local->tm_mon + 1) << '/'
+    << std::setfill('0') << std::setw(2)
+    << local->tm_mday << '/'
+    << std::setfill('0') << std::setw(2)
     << (local->tm_year - 100)
     << std::endl;
 }
@@ -41,8 +43,10 @@ void printTimeStamp()
     
     // print zero-padded time
     std::cout << std::setfill('0') << std::setw(2)
-    << (local->tm_hour + 1) << ':'
+    << (local->tm_hour) << ':'
+    << std::setfill('0') << std::setw(2)
     << local->tm_min << ':'
+    << std::setfill('0') << std::setw(2)
     << local->tm_sec
     << std::endl;
 }

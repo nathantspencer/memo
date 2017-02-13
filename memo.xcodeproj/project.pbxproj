@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		547156BE1E516BC000572299 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547156BD1E516BC000572299 /* main.cpp */; };
+		547156C61E5170AA00572299 /* printer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547156C41E5170AA00572299 /* printer.cpp */; };
+		547156C91E5180B300572299 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 547156C81E5180B300572299 /* libsqlite3.tbd */; };
+		547156CB1E52300500572299 /* libncurses.5.4.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 547156CA1E52300500572299 /* libncurses.5.4.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,10 @@
 /* Begin PBXFileReference section */
 		547156BA1E516BC000572299 /* memo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = memo; sourceTree = BUILT_PRODUCTS_DIR; };
 		547156BD1E516BC000572299 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		547156C41E5170AA00572299 /* printer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printer.cpp; sourceTree = "<group>"; };
+		547156C51E5170AA00572299 /* printer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = printer.hpp; sourceTree = "<group>"; };
+		547156C81E5180B300572299 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		547156CA1E52300500572299 /* libncurses.5.4.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libncurses.5.4.tbd; path = usr/lib/libncurses.5.4.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				547156CB1E52300500572299 /* libncurses.5.4.tbd in Frameworks */,
+				547156C91E5180B300572299 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +52,7 @@
 			children = (
 				547156BC1E516BC000572299 /* memo */,
 				547156BB1E516BC000572299 /* Products */,
+				547156C71E5180B300572299 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +68,19 @@
 			isa = PBXGroup;
 			children = (
 				547156BD1E516BC000572299 /* main.cpp */,
+				547156C41E5170AA00572299 /* printer.cpp */,
+				547156C51E5170AA00572299 /* printer.hpp */,
 			);
 			path = memo;
+			sourceTree = "<group>";
+		};
+		547156C71E5180B300572299 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				547156CA1E52300500572299 /* libncurses.5.4.tbd */,
+				547156C81E5180B300572299 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				547156C61E5170AA00572299 /* printer.cpp in Sources */,
 				547156BE1E516BC000572299 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
