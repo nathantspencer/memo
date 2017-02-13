@@ -13,11 +13,11 @@
 
 int main(int argc, const char * argv[]) {
     
-    bool validArgument = true;
-    
     if(argc == 1)
     {
         // open memo application
+        printDateStamp();
+        printTimeStamp();
     }
     
     else if(argc == 2)
@@ -26,19 +26,13 @@ int main(int argc, const char * argv[]) {
         {
           // should open directly into new memo entry with current timestamp
         }
-        
-        // set validArgument to zero if no valid argument is found
-        validArgument = false;
     }
-    
-    if (!validArgument)
-    {
-        // show memo help
-        printLn(" - memo                      open the memo application");
-        printLn(" - memo new                  start a new memo entry");
-        printLn(" - memo year [int year]      show memos from specified year");
-        printLn(" - memo month [int month]    show memos from a specified month");
-    }
+
+    // show memo help
+    printLn(" - memo                      open the memo application");
+    printLn(" - memo new                  start a new memo entry");
+    printLn(" - memo year [int year]      show memos from specified year");
+    printLn(" - memo month [int month]    show memos from a specified month");
     
     return 0;
 }

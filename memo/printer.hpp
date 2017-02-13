@@ -16,4 +16,8 @@ void print(std::string str);
 
 void printLn(std::string str);
 
+void printDateStamp();
+
+void printTimeStamp();
+
 #endif /* printer_hpp */
