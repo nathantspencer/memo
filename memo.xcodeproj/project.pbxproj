@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		547156BE1E516BC000572299 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547156BD1E516BC000572299 /* main.cpp */; };
-		547156C61E5170AA00572299 /* printer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547156C41E5170AA00572299 /* printer.cpp */; };
+		547156BE1E516BC000572299 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547156BD1E516BC000572299 /* Application.cpp */; };
+		547156C61E5170AA00572299 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547156C41E5170AA00572299 /* String.cpp */; };
 		547156C91E5180B300572299 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 547156C81E5180B300572299 /* libsqlite3.tbd */; };
 		547156CB1E52300500572299 /* libncurses.5.4.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 547156CA1E52300500572299 /* libncurses.5.4.tbd */; };
+		547156CE1E57E84C00572299 /* Editor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547156CC1E57E84C00572299 /* Editor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,11 +28,13 @@
 
 /* Begin PBXFileReference section */
 		547156BA1E516BC000572299 /* memo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = memo; sourceTree = BUILT_PRODUCTS_DIR; };
-		547156BD1E516BC000572299 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		547156C41E5170AA00572299 /* printer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printer.cpp; sourceTree = "<group>"; };
-		547156C51E5170AA00572299 /* printer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = printer.hpp; sourceTree = "<group>"; };
+		547156BD1E516BC000572299 /* Application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
+		547156C41E5170AA00572299 /* String.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
+		547156C51E5170AA00572299 /* String.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = String.hpp; sourceTree = "<group>"; };
 		547156C81E5180B300572299 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		547156CA1E52300500572299 /* libncurses.5.4.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libncurses.5.4.tbd; path = usr/lib/libncurses.5.4.tbd; sourceTree = SDKROOT; };
+		547156CC1E57E84C00572299 /* Editor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Editor.cpp; sourceTree = "<group>"; };
+		547156CD1E57E84C00572299 /* Editor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Editor.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +70,11 @@
 		547156BC1E516BC000572299 /* memo */ = {
 			isa = PBXGroup;
 			children = (
-				547156BD1E516BC000572299 /* main.cpp */,
-				547156C41E5170AA00572299 /* printer.cpp */,
-				547156C51E5170AA00572299 /* printer.hpp */,
+				547156BD1E516BC000572299 /* Application.cpp */,
+				547156C41E5170AA00572299 /* String.cpp */,
+				547156CC1E57E84C00572299 /* Editor.cpp */,
+				547156CD1E57E84C00572299 /* Editor.hpp */,
+				547156C51E5170AA00572299 /* String.hpp */,
 			);
 			path = memo;
 			sourceTree = "<group>";
@@ -141,8 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				547156C61E5170AA00572299 /* printer.cpp in Sources */,
-				547156BE1E516BC000572299 /* main.cpp in Sources */,
+				547156C61E5170AA00572299 /* String.cpp in Sources */,
+				547156BE1E516BC000572299 /* Application.cpp in Sources */,
+				547156CE1E57E84C00572299 /* Editor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
