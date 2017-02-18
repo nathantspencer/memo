@@ -28,7 +28,7 @@ Editor::Editor()
     }
     
     m_window = newwin(m_height, m_width, EDITOR_BORDER_SIZE, (EDITOR_BORDER_SIZE * 6) + SIDEBAR_WIDTH + DIVIDER_WIDTH);
-    m_divider = newwin(m_height, DIVIDER_WIDTH + (EDITOR_BORDER_SIZE * 2), EDITOR_BORDER_SIZE - 1, (EDITOR_BORDER_SIZE * 4) + SIDEBAR_WIDTH);
+    m_divider = newwin(m_height + 2, DIVIDER_WIDTH + (EDITOR_BORDER_SIZE * 2), EDITOR_BORDER_SIZE - 1, (EDITOR_BORDER_SIZE * 4) + SIDEBAR_WIDTH);
     m_sidebar = newwin(m_height, SIDEBAR_WIDTH, EDITOR_BORDER_SIZE, (EDITOR_BORDER_SIZE * 2));
     
     scrollok(m_window, true);
@@ -78,9 +78,6 @@ void Editor::Update()
         case KEY_ENTER:
             Enter();
             break;
-        case KEY_STAB:
-            // Tab();
-            break;
         default:
             AddToText(keystroke);
             break;
@@ -124,51 +121,22 @@ void Editor::WriteSidebar()
 
 void Editor::DownArrow()
 {
-    if(m_cursorIndex + m_width >= m_text.size())
-    {
-        int displayCursorOffset;
-        while(displayCursorOffset <= m_width)
-        {
-            m_cursorIndex++;
-            if(m_text[m_cursorIndex] == '\n')
-            {
-            }
-            else if(m_text[m_cursorIndex] == '\t')
-            {
-                
-            }
-            else
-            {
-                displayCursorOffset++;
-            }
-        }
-    }
+
 }
 
 void Editor::UpArrow()
 {
-    if(m_cursorIndex / m_width > 0)
+    int oldX, oldY, newX, newY;
+    getyx(m_window, oldY, oldX);
+    
+    if(oldY > 0)
     {
-        int displayCursorOffset;
-        while(displayCursorOffset <= m_width)
+        getyx(m_window, newY, newX);
+        while(newX > oldX || newY == oldY)
         {
             m_cursorIndex--;
-            if(m_text[m_cursorIndex] == '\n')
-            {
-                
-            }
-            else if(m_text[m_cursorIndex] == '\t')
-            {
-                
-            }
-            else if(m_cursorIndex == 0)
-            {
-                break;
-            }
-            else
-            {
-                displayCursorOffset++;
-            }
+            SetCursorDisplay();
+            getyx(m_window, newY, newX);
         }
     }
 }
