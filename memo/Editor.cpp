@@ -15,10 +15,25 @@ Editor::Editor()
     getmaxyx(stdscr, screenHeight, screenWidth);
     
     m_height = screenHeight - (EDITOR_BORDER_SIZE * 2);
-    m_width = screenWidth - (EDITOR_BORDER_SIZE * 6) - SIDEBAR_WIDTH;
+    m_width = screenWidth - (EDITOR_BORDER_SIZE * 8) - SIDEBAR_WIDTH - DIVIDER_WIDTH;
     
-    m_window = newwin(m_height, m_width, EDITOR_BORDER_SIZE, (EDITOR_BORDER_SIZE * 4) + 8);
+    if(m_height > 20)
+    {
+        m_height = 20;
+    }
+    
+    if(m_width > 65)
+    {
+        m_width = 65;
+    }
+    
+    m_window = newwin(m_height, m_width, EDITOR_BORDER_SIZE, (EDITOR_BORDER_SIZE * 6) + SIDEBAR_WIDTH + DIVIDER_WIDTH);
+    m_divider = newwin(m_height, DIVIDER_WIDTH + (EDITOR_BORDER_SIZE * 2), EDITOR_BORDER_SIZE - 1, (EDITOR_BORDER_SIZE * 4) + SIDEBAR_WIDTH);
     m_sidebar = newwin(m_height, SIDEBAR_WIDTH, EDITOR_BORDER_SIZE, (EDITOR_BORDER_SIZE * 2));
+    
+    scrollok(m_window, true);
+    wborder(m_divider, 0, ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+    wrefresh(m_divider);
     WriteSidebar();
     
     keypad(m_window, TRUE);

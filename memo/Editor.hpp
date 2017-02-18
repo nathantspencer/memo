@@ -16,6 +16,7 @@
 
 const int EDITOR_BORDER_SIZE = 1;
 const int SIDEBAR_WIDTH = 8;
+const int DIVIDER_WIDTH = 1;
 const int KEY_BACKSPACE_UNIX = 127;
 const int TAB_SIZE = 8;
 
@@ -46,6 +47,7 @@ class Editor
         void Close();
     
         WINDOW * m_window;
+        WINDOW * m_divider;
         WINDOW * m_sidebar;
     
         std::string m_text;
