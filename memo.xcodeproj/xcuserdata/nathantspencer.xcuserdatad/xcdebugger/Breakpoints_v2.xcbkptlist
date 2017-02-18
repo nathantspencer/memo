@@ -40,12 +40,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "memo/string.cpp"
-            timestampString = "508742030.43517"
+            timestampString = "509123607.772079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "addTimeString()"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "GetTimeString()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -56,12 +56,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "memo/string.cpp"
-            timestampString = "508742030.43517"
+            timestampString = "509123607.772079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "addTimeString()"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "GetTimeString()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -72,12 +72,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "memo/string.cpp"
-            timestampString = "508742030.43517"
+            timestampString = "509123607.772079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "addTimeString()"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "GetTimeString()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -88,12 +88,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "memo/string.cpp"
-            timestampString = "508742030.43517"
+            timestampString = "509123607.772079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "addDateString()"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "GetDateString()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -104,12 +104,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "memo/string.cpp"
-            timestampString = "508742030.43517"
+            timestampString = "509123607.772079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "addDateString()"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "GetDateString()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -120,28 +120,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "memo/Editor.cpp"
-            timestampString = "509083859.452891"
+            timestampString = "509125782.263903"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "Editor::Update()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "memo/Editor.cpp"
-            timestampString = "509084193.032888"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "Editor::Enter()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,17 +8,15 @@
 
 #include "String.hpp"
 
-#include <curses.h>
 #include <iostream>
 #include <iomanip>
 #include <sstream>
 
-void addDateString()
+const std::string GetDateString()
 {
     time_t t = time(0);
     struct tm * local = localtime(&t);
     
-    // stream zero-padded datestamp to outStringStream
     std::stringstream outStringStream;
     outStringStream << std::setfill('0') << std::setw(2)
         << (local->tm_mon + 1) << '/'
@@ -26,27 +24,26 @@ void addDateString()
         << local->tm_mday << '/'
         << std::setfill('0') << std::setw(2)
         << (local->tm_year - 100)
-        << std::endl << '\r';
+        << std::endl;
     
-    // return resulting string
     const std::string& outString = outStringStream.str();
+    return outString;
 }
 
-void addTimeString()
+const std::string GetTimeString()
 {
     time_t t = time(0);
     struct tm * local = localtime(&t);
     
-    // stream zero-padded timestamp to outStringStream
     std::stringstream outStringStream;
-    std::cout << std::setfill('0') << std::setw(2)
-    << (local->tm_hour) << ':'
-    << std::setfill('0') << std::setw(2)
-    << local->tm_min << ':'
-    << std::setfill('0') << std::setw(2)
-    << local->tm_sec
-    << std::endl << '\r';
+    outStringStream << std::setfill('0') << std::setw(2)
+        << (local->tm_hour) << ':'
+        << std::setfill('0') << std::setw(2)
+        << local->tm_min << ':'
+        << std::setfill('0') << std::setw(2)
+        << local->tm_sec
+        << std::endl;
     
-    // return resulting string
-    std::string outString = outStringStream.str();
+    const std::string& outString = outStringStream.str();
+    return outString;
 }

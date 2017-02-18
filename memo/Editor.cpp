@@ -7,9 +7,7 @@
 //
 
 #include "Editor.hpp"
-
-#include <stdio.h>
-#include <string>
+#include "String.hpp"
 
 Editor::Editor()
 {
@@ -17,13 +15,18 @@ Editor::Editor()
     getmaxyx(stdscr, screenHeight, screenWidth);
     
     m_height = screenHeight - (EDITOR_BORDER_SIZE * 2);
-    m_width = screenWidth - (EDITOR_BORDER_SIZE * 4);
-    m_window = newwin(m_height, m_width, EDITOR_BORDER_SIZE, (EDITOR_BORDER_SIZE * 2));
+    m_width = screenWidth - (EDITOR_BORDER_SIZE * 6) - SIDEBAR_WIDTH;
+    
+    m_window = newwin(m_height, m_width, EDITOR_BORDER_SIZE, (EDITOR_BORDER_SIZE * 4) + 8);
+    m_sidebar = newwin(m_height, SIDEBAR_WIDTH, EDITOR_BORDER_SIZE, (EDITOR_BORDER_SIZE * 2));
+    WriteSidebar();
     
     keypad(m_window, TRUE);
     m_cursorIndex = 0;
     m_text = "";
+    
     m_insertMode = false;
+    m_isClosed = false;
 }
 
 Editor::~Editor()
@@ -78,19 +81,81 @@ void Editor::Update()
     wrefresh(m_window);
 }
 
+bool Editor::GetIsClosed()
+{
+    return m_isClosed;
+}
+
 void Editor::Close()
 {
     endwin();
+    m_isClosed = true;
+}
+
+void Editor::WriteSidebar()
+{
+    for(char character : m_datestamp)
+    {
+        waddch(m_sidebar, character);
+    }
+    wmove(m_sidebar, 1, 0);
+    
+    for(char character : m_timestamp)
+    {
+        waddch(m_sidebar, character);
+    }
+    wrefresh(m_sidebar);
 }
 
 void Editor::DownArrow()
 {
-    // needs implementation
+    if(m_cursorIndex + m_width >= m_text.size())
+    {
+        int displayCursorOffset;
+        while(displayCursorOffset <= m_width)
+        {
+            m_cursorIndex++;
+            if(m_text[m_cursorIndex] == '\n')
+            {
+            }
+            else if(m_text[m_cursorIndex] == '\t')
+            {
+                
+            }
+            else
+            {
+                displayCursorOffset++;
+            }
+        }
+    }
 }
 
 void Editor::UpArrow()
 {
-    // needs implementation
+    if(m_cursorIndex / m_width > 0)
+    {
+        int displayCursorOffset;
+        while(displayCursorOffset <= m_width)
+        {
+            m_cursorIndex--;
+            if(m_text[m_cursorIndex] == '\n')
+            {
+                
+            }
+            else if(m_text[m_cursorIndex] == '\t')
+            {
+                
+            }
+            else if(m_cursorIndex == 0)
+            {
+                break;
+            }
+            else
+            {
+                displayCursorOffset++;
+            }
+        }
+    }
 }
 
 void Editor::LeftArrow()
@@ -147,14 +212,10 @@ void Editor::SetCursorDisplay()
     int cursorDisplayIndex = 0;
     for(int i = 0; i < m_cursorIndex; i++)
     {
-        
-        // enter is encountered
         if(m_text[i] == '\n')
         {
             cursorDisplayIndex += (m_width - (cursorDisplayIndex % m_width));
         }
-        
-        // tab is encountered
         else if(m_text[i] == '\t')
         {
             if(((TAB_SIZE - ((cursorDisplayIndex % m_width) % TAB_SIZE)) + (cursorDisplayIndex % m_width)) > m_width)
@@ -166,8 +227,6 @@ void Editor::SetCursorDisplay()
                 cursorDisplayIndex += (TAB_SIZE - ((cursorDisplayIndex % m_width) % TAB_SIZE));
             }
         }
-        
-        // other character encountered
         else
         {
             cursorDisplayIndex++;

@@ -11,8 +11,8 @@
 
 #include <string>
 
-std::string getDateString();
+const std::string GetDateString();
 
-std::string getTimeString();
+const std::string GetTimeString();
 
 #endif /* String_hpp */
