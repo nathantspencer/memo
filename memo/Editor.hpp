@@ -15,9 +15,10 @@
 
 const int EDITOR_BORDER_SIZE = 1;
 const int KEY_BACKSPACE_UNIX = 127;
+const int TAB_SIZE = 8;
 
-class Editor {
-    
+class Editor
+{
     public:
     
         Editor();
@@ -38,6 +39,7 @@ class Editor {
         void Enter();
     
         void AddToText(char keystroke);
+        void SetCursorDisplay();
     
         WINDOW * m_window;
         std::string m_text;
@@ -46,6 +48,7 @@ class Editor {
         int m_height;
         int m_width;
     
+        bool m_insertMode;
 };
 
 #endif /* Editor_hpp */

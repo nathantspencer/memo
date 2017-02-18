@@ -13,8 +13,8 @@
 #include <string>
 #include <curses.h>
 
-int main(int argc, const char * argv[]) {
-    
+int main(int argc, const char * argv[])
+{
     initscr();
     noecho();
 
