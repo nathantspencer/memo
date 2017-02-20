@@ -46,6 +46,8 @@ class Editor
         void SetCursorDisplay();
         void Close();
     
+        // TODO: private function to move words that cross the end of a line to the next line
+    
         WINDOW * m_window;
         WINDOW * m_divider;
         WINDOW * m_sidebar;

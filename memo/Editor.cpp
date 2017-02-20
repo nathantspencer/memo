@@ -22,9 +22,9 @@ Editor::Editor()
         m_height = 20;
     }
     
-    if(m_width > 65)
+    if(m_width > 55)
     {
-        m_width = 65;
+        m_width = 55;
     }
     
     m_window = newwin(m_height, m_width, EDITOR_BORDER_SIZE, (EDITOR_BORDER_SIZE * 6) + SIDEBAR_WIDTH + DIVIDER_WIDTH);
@@ -121,7 +121,26 @@ void Editor::WriteSidebar()
 
 void Editor::DownArrow()
 {
-
+    int oldX, oldY, newX, newY, originalCursorIndex;
+    originalCursorIndex = m_cursorIndex;
+    getyx(m_window, oldY, oldX);
+    getyx(m_window, newY, newX);
+    
+    while(newX < oldX || newY == oldY)
+    {
+        m_cursorIndex++;
+        SetCursorDisplay();
+        getyx(m_window, newY, newX);
+        if(newX > oldX && newY != oldY)
+        {
+            m_cursorIndex--;
+        }
+        if(m_cursorIndex >= m_text.size())
+        {
+            m_cursorIndex = (int)m_text.size();
+            break;
+        }
+    }
 }
 
 void Editor::UpArrow()
@@ -138,6 +157,10 @@ void Editor::UpArrow()
             SetCursorDisplay();
             getyx(m_window, newY, newX);
         }
+    }
+    else
+    {
+        m_cursorIndex = 0;
     }
 }
 
