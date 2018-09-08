@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NORMAL='\033[0m'
+
+echo -e "${GREEN}Building memo...${NORMAL}"
+
+if [ ! -d "build" ]; then
+	mkdir build
+fi
+
+cd build
+case $OSTYPE in
+	darwin*) cmake -G Xcode .. ;;
+	msys*) cmake -G "Visual Studio 15 2017" .. ;;
+	*) echo -e "${RED}Platform \"${OSTYPE}\" not currently handled by setup. Aborting...${NORMAL}" ;;
+esac
+cd ..
