@@ -1,6 +1,8 @@
 #include <algorithm>
 #include <iostream>
 
+#include <ncurses.h>
+
 #define VERSION "0.1.0"
 
 int main(int argc, char* argv[])
@@ -23,9 +25,9 @@ int main(int argc, char* argv[])
 	{
 		std::cout << "\n\t" << "memo v" << VERSION << "\n";
 		std::cout << "\n\t" << "usage:" << "\n";
-		std::cout << "\n\t" << "memo       -->  display version and help";
-		std::cout << "\n\t" << "memo new   -->  begin a new memo";
-		std::cout << "\n\t" << "memo view  -->  browse saved memos" << "\n";
+		std::cout << "\n\t" << "memo         display version and help";
+		std::cout << "\n\t" << "memo new     begin a new memo";
+		std::cout << "\n\t" << "memo view    browse saved memos" << "\n";
 	}
 		
 	return 0;

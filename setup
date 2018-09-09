@@ -4,6 +4,10 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NORMAL='\033[0m'
 
+echo -e "${GREEN}Updating submodules...${NORMAL}"
+
+git submodule update --init --recursive
+
 echo -e "${GREEN}Building memo...${NORMAL}"
 
 if [ ! -d "build" ]; then

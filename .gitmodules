@@ -1,0 +1,6 @@
+[submodule "libs/ncurses"]
+	path = libs/ncurses
+	url = https://github.com/mirror/ncurses.git
+[submodule "libs/PDCurses"]
+	path = libs/PDCurses
+	url = https://github.com/wmcbrine/PDCurses
