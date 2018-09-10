@@ -4,9 +4,42 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NORMAL='\033[0m'
 
+#===========================================================#
+#==================| UPDATE SUBMODULES |====================#
+#===========================================================#
+
 echo -e "${GREEN}Updating submodules...${NORMAL}"
 
 git submodule update --init --recursive
+
+#===========================================================#
+#===================| BUILD PDCURSES |======================#
+#===========================================================#
+
+echo -e "${GREEN}Building PDCurses...${NORMAL}"
+
+if [ ! -d libs/PDCurses/build ]; then
+	mkdir libs/PDCurses/build
+fi
+
+cd libs/PDCurses/build
+
+case $OSTYPE in
+
+	msys*)
+		nmake -f ../wincon/Makefile.vc PDCURSES_SRCDIR="${PWD}/.."
+		;;
+	*)
+		libs/PDCurses/configure
+		make libs/PDCurses/make
+		;;
+esac
+
+cd ../../..
+
+#===========================================================#
+#=====================| BUILD MEMO |========================#
+#===========================================================#
 
 echo -e "${GREEN}Building memo...${NORMAL}"
 
@@ -16,8 +49,15 @@ fi
 
 cd build
 case $OSTYPE in
-	darwin*) cmake -G Xcode .. ;;
-	msys*) cmake -G "Visual Studio 15 2017" .. ;;
-	*) echo -e "${RED}Platform \"${OSTYPE}\" not currently handled by setup. Aborting...${NORMAL}" ;;
+	darwin*)
+		cmake -G Xcode ..
+		;;
+	msys*)
+		cmake -G "Visual Studio 15 2017" ..
+		;;
+	*)
+		echo -e "${RED}Platform \"${OSTYPE}\" not currently handled by setup. Aborting...${NORMAL}"
+		exit 1
+		;;
 esac
 cd ..
