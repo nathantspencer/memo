@@ -23,9 +23,7 @@ if [ ! -d libs/PDCurses/build ]; then
 fi
 
 cd libs/PDCurses/build
-
 case $OSTYPE in
-
 	msys*)
 		nmake -f ../wincon/Makefile.vc PDCURSES_SRCDIR="${PWD}/.."
 		;;
@@ -34,7 +32,6 @@ case $OSTYPE in
 		make libs/PDCurses/make
 		;;
 esac
-
 cd ../../..
 
 #===========================================================#
