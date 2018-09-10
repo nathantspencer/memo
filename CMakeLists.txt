@@ -22,10 +22,13 @@ source_group("" FILES ${SOURCES})
 #=====================================================================================#
 
 file(GLOB_RECURSE SOURCES sources/*.cpp sources/*.h)
+
 add_executable(memo ${SOURCES})
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT memo)
 
 #=====================================================================================#
 #|----------------------------------| LINKAGE |--------------------------------------|#
 #=====================================================================================#
 
-target_link_libraries(memo PDCurses)
+set(PDCURSES_LIB ${CMAKE_SOURCE_DIR}/libs/PDCurses/build/pdcurses.lib)
+target_link_libraries(memo ${PDCURSES_LIB})

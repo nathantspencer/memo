@@ -28,8 +28,8 @@ case $OSTYPE in
 		nmake -f ../wincon/Makefile.vc PDCURSES_SRCDIR="${PWD}/.."
 		;;
 	*)
-		libs/PDCurses/configure
-		make libs/PDCurses/make
+		../x11/configure
+		make ../x11/make
 		;;
 esac
 cd ../../..
