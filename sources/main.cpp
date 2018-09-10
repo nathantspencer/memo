@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 
-#include <ncurses.h>
+#include <curses.h>
 
 #define VERSION "0.1.0"
 
