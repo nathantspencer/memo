@@ -20,36 +20,31 @@ int main(int argc, char* argv[])
 	keypad(stdscr, TRUE);
 	nodelay(stdscr, TRUE);
 
-	WINDOW* dateTimePanel = newwin(LINES - 2, 8, 1, 2);
-	WINDOW* dividerPanel  = newwin(LINES - 2, 1, 1, 12);
+	WINDOW* dateTimePanel = newwin(LINES - 2, 11, 1, 2);
+
+	// TODO: use wvline instead of a dividerPanel
 
 	int key;
 	while (key = getch())
 	{
+		curs_set(0);
+
 		if (key == KEY_RESIZE)
 		{
 			resize_term(0, 0);
-			wresize(dateTimePanel, LINES - 2, 8);
-			wresize(dividerPanel, LINES - 2, 1);
+			wresize(dateTimePanel, LINES - 2, 11);
 		}
 
-		wmove(dateTimePanel, 0, 0);
-		wprintw(dateTimePanel, " 9/27/18");
-		wprintw(dateTimePanel, "10:03 PM");
-
-		wmove(dividerPanel, 0, 0);
-		for (int i = 0; i < LINES - 2; ++i)
-		{
-			waddch(dividerPanel, ACS_VLINE);
-		}
+		mvwprintw(dateTimePanel, 0, 0, " 9/27/18");
+		mvwprintw(dateTimePanel, 1, 0, "10:03 PM");
+		mvwvline(dateTimePanel, 0, 10, ACS_VLINE, LINES - 2);
 
 		wrefresh(dateTimePanel);
-		wrefresh(dividerPanel);
 		refresh();
+		curs_set(1);
 	}
 
 	delwin(dateTimePanel);
-	delwin(dividerPanel);
 
 	// ^^ TO BECOME UNIVERSALNEWSTATE
 
