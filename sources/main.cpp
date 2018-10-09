@@ -12,8 +12,52 @@ constexpr char* VERSION = "0.1.0";
 
 int main(int argc, char* argv[])
 {
+	// vv TO BECOME UNIVERSALNEWSTATE
+
+	initscr();
+	raw();
+	noecho();
+	keypad(stdscr, TRUE);
+	nodelay(stdscr, TRUE);
+
+	WINDOW* dateTimePanel = newwin(LINES - 2, 8, 1, 2);
+	WINDOW* dividerPanel  = newwin(LINES - 2, 1, 1, 12);
+
+	int key;
+	while (key = getch())
+	{
+		if (key == KEY_RESIZE)
+		{
+			resize_term(0, 0);
+			wresize(dateTimePanel, LINES - 2, 8);
+			wresize(dividerPanel, LINES - 2, 1);
+		}
+
+		wmove(dateTimePanel, 0, 0);
+		wprintw(dateTimePanel, " 9/27/18");
+		wprintw(dateTimePanel, "10:03 PM");
+
+		wmove(dividerPanel, 0, 0);
+		for (int i = 0; i < LINES - 2; ++i)
+		{
+			waddch(dividerPanel, ACS_VLINE);
+		}
+
+		wrefresh(dateTimePanel);
+		wrefresh(dividerPanel);
+		refresh();
+	}
+
+	delwin(dateTimePanel);
+	delwin(dividerPanel);
+
+	// ^^ TO BECOME UNIVERSALNEWSTATE
+
 	if (argc > 1)
 	{
+		CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+		auto consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+
 		std::string argument = argv[1];
 		std::transform(argument.begin(), argument.end(), argument.begin(), tolower);
 
@@ -28,7 +72,7 @@ int main(int argc, char* argv[])
 			halfdelay(5);
 #endif
 
-			WINDOW* dateTimePanel = newwin(LINES - 2, 8, 1, 2);
+			
 
 			do
 			{
@@ -36,24 +80,13 @@ int main(int argc, char* argv[])
 #ifdef WIN32
 				int columns, rows;
 
-				CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-				auto consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 				bool x = consoleHandle == INVALID_HANDLE_VALUE;
 				GetConsoleScreenBufferInfo(consoleHandle, &consoleInfo);
 
 				columns = consoleInfo.srWindow.Right - consoleInfo.srWindow.Left + 1;
 				rows = consoleInfo.srWindow.Bottom - consoleInfo.srWindow.Top + 1;
 #endif
-				if (COLS > 20)
-				{
-					mvwprintw(dateTimePanel, 0, 0, (" 9." + std::to_string(consoleInfo.dwSize.X)).c_str());
-					mvwprintw(dateTimePanel, 1, 0, "10:03 PM");
-					wrefresh(dateTimePanel);
-				}
-				else
-				{
-					wprintw(dateTimePanel, "derp");
-				}
+				
 			} while (getch());
 
 			endwin();
