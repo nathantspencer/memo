@@ -10,7 +10,7 @@ std::shared_ptr<INewState> StateFactory::CreateNewState()
 #endif
 
 	// TODO: reasonable default
-	return std::shared_ptr<INewState>();
+	return std::shared_ptr<Win32NewState>();
 }
 
 std::shared_ptr<IViewState> StateFactory::CreateViewState()
@@ -20,5 +20,5 @@ std::shared_ptr<IViewState> StateFactory::CreateViewState()
 #endif
 
 	// TODO: reasonable default
-	return std::shared_ptr<IViewState>();
+	return std::shared_ptr<Win32ViewState>();
 }

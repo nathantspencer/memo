@@ -7,4 +7,5 @@
  */
 class Win32ViewState : public IViewState
 {
+	virtual void Run();
 };

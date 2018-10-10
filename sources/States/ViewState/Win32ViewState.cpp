@@ -1,1 +1,5 @@
-#include <States/ViewState/Win32ViewState.h>
+#include "Win32ViewState.h"
+
+void Win32ViewState::Run()
+{
+}

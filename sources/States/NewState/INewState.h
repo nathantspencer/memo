@@ -7,4 +7,6 @@
  */
 class INewState : public IState
 {
+public:
+	virtual void Run() = 0;
 };

@@ -7,4 +7,6 @@
  */
 class Win32NewState : public INewState
 {
+public:
+	virtual void Run();
 };
