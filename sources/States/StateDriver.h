@@ -1,8 +1,7 @@
 #pragma once
 
-/*! Runs the current state. /file
+/*! Runs the current state.
  */
-
 class StateDriver
 {
 };

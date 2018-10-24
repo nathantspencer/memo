@@ -31,8 +31,6 @@ int main(int argc, char* argv[])
 			halfdelay(5);
 #endif
 
-			
-
 			do
 			{
 				refresh();

@@ -6,7 +6,7 @@
 #include <memory>
 
 /*! A namespace for generating platform-appropriate instances of
- *  state classes. /file
+ *  state classes.
  */
 namespace StateFactory
 {
