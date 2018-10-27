@@ -1,12 +1,10 @@
-#include <algorithm>
-#include <iostream>
+#include <States/StateDriver.h>
 
 #include <curses.h>
-#include <string>
 
-#ifdef WIN32
-#include <Windows.h>
-#endif
+#include <algorithm>
+#include <iostream>
+#include <string>
 
 constexpr char* VERSION = "0.1.0";
 
@@ -14,11 +12,10 @@ int main(int argc, char* argv[])
 {
 	if (argc > 1)
 	{
-		CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-		auto consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-
 		std::string argument = argv[1];
 		std::transform(argument.begin(), argument.end(), argument.begin(), tolower);
+
+		StateDriver driver;
 
 		if (argument == "new")
 		{
