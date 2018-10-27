@@ -8,7 +8,7 @@
  *  The top state on the stack is the currently executing state, and
  *  all states below it are suspended.
  *
- *  TODO: need some callback for terminate to pop the terminated state from the stack
+ *  @see  IState
  */
 class StateDriver
 {

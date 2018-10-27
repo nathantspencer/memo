@@ -1,56 +1,51 @@
 #pragma once
+#include <functional>
+#include <memory>
 
 /*! Interface for application states, which draw the GUI and take
  *  input for different memo commands.
+ *
+ *  @see  StateDriver
  */
 class IState
 {
 public:
 	/*! Default constructor for `IState`.
 	 */
-	IState() : m_isTerminated(false) {};
+	IState();
+
+	/*! Constructor for `IState` which includes a callback for the
+	 *  state's termination.
+	 *
+	 *  @param  terminateCallback  function to be called when state terminates
+	 */
+	IState(std::function<void()> terminateCallback);
 
 	/*! Begins the execution of the state.
 	 */
 	virtual void Execute() = 0;
 
-	/*! Ends the execution the state.
+	/*! Setter for suspending and resuming execution of the state.
+	*
+	*   @param  isSuspended  `true` to suspend the state, `false` to resume
+	*/
+	void SetIsSuspended(bool isSuspended);
+
+protected:
+	/*! Calls the termination callback function if one is set. Should
+	 *  be called by all implementers when the state's execution is done.
 	 */
-	virtual void Terminate()
-	{
-		m_isTerminated = false;
-	};
+	virtual void Terminate();
 
 	/*! Getter for whether the state is suspended.
 	*
 	*   @return  `true` if state is suspended, otherwise `false`
 	*/
-	bool GetIsSuspended() const
-	{
-		return m_isSuspended;
-	}
-
-	/*! Setter for whether the state is suspended.
-	*
-	*   @param  isSuspended  `true` to suspend the state, `false` to resume
-	*/
-	void SetIsSuspended(bool isSuspended)
-	{
-		m_isSuspended = isSuspended;
-	}
-
-	/*! Getter for whether the state has been terminated.
-	 * 
-	 *  @return  `true` if state has called `Terminate()`, otherwise `false`
-	 */
-	bool GetIsTerminated() const
-	{
-		return m_isTerminated;
-	};
+	bool GetIsSuspended() const;
 
 private:
+	std::function<void()> m_terminateCallback;
 	bool m_isSuspended;
-	bool m_isTerminated;
 };
 
 typedef std::shared_ptr<IState> IStatePtr;
