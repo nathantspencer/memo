@@ -8,13 +8,13 @@
  *  The top state on the stack is the currently executing state, and
  *  all states below it are suspended.
  *
- *  TODO: observer that will watch for the state to close
+ *  TODO: need some callback for terminate to pop the terminated state from the stack
  */
 class StateDriver
 {
 public:
-	/*! Suspends the current state if one exists, and adds the given
-	 *  kostate to the top of the stack.
+	/*! Suspends the current state if one exists, adds the given state
+	 *  to the top of the stack, and executes it.
 	 */
 	void PushState(IStatePtr state);
 
