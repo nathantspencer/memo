@@ -2,6 +2,8 @@
 #include <functional>
 #include <memory>
 
+typedef std::shared_ptr<IState> IStatePtr;
+
 /*! Interface for application states, which draw the GUI and take
  *  input for different memo commands.
  *
@@ -10,42 +12,33 @@
 class IState
 {
 public:
-	/*! Default constructor for `IState`.
-	 */
-	IState();
-
-	/*! Constructor for `IState` which includes a callback for the
-	 *  state's termination.
+	/*! Constructor for `IState`. Requires two functions as arguments: one that handles
+	 *  the constructed state's termination and another that handles it's creation of
+	 *  child states.
 	 *
-	 *  @param  terminateCallback  function to be called when state terminates
+	 *  @param  terminateHandler  callback for the state's termination
+	 *  @param  addChildStateHandler  callback for the creation of child states
 	 */
-	IState(std::function<void()> terminateCallback);
+	IState(std::function<void()> terminateHandler, std::function<void(IStatePtr)> addChildStateHandler);
 
 	/*! Begins the execution of the state.
 	 */
 	virtual void Execute() = 0;
 
-	/*! Setter for suspending and resuming execution of the state.
-	*
-	*   @param  isSuspended  `true` to suspend the state, `false` to resume
-	*/
-	void SetIsSuspended(bool isSuspended);
-
 protected:
-	/*! Calls the termination callback function if one is set. Should
-	 *  be called by all implementers when the state's execution is done.
+	/*! Finishes things up and calls the state's termination handler. Should be called
+	 *  by all implementers when the state's execution is done.
 	 */
 	virtual void Terminate();
 
-	/*! Getter for whether the state is suspended.
-	*
-	*   @return  `true` if state is suspended, otherwise `false`
-	*/
-	bool GetIsSuspended() const;
+	/*! Calls the add child state handler, which should pass off execution to a child
+	 *  state temporarily.
+	 *
+	 *  @param  childState  a new state which will become a child of the calling state
+	 */
+	virtual void AddChildState(IStatePtr childState);
 
 private:
-	std::function<void()> m_terminateCallback;
-	bool m_isSuspended;
+	std::function<void()> m_terminateHandler;
+	std::function<void(IStatePtr)> m_addChildStateHandler;
 };
-
-typedef std::shared_ptr<IState> IStatePtr;

@@ -1,28 +1,17 @@
 #include "IState.h"
 
-IState::IState()
+IState::IState(std::function<void()> terminateHandler, std::function<void(IStatePtr)> addChildStateHandler) :
+	m_terminateHandler(terminateHandler),
+	m_addChildStateHandler(addChildStateHandler)
 {
-}
-
-IState::IState(std::function<void()> terminateCallback) :
-	m_terminateCallback(terminateCallback)
-{
-}
-
-void IState::SetIsSuspended(bool isSuspended)
-{
-	m_isSuspended = isSuspended;
 }
 
 void IState::Terminate()
 {
-	if (m_terminateCallback)
-	{
-		m_terminateCallback();
-	}
+	m_terminateHandler();
 }
 
-bool IState::GetIsSuspended() const
+void IState::AddChildState(IStatePtr childState)
 {
-	return m_isSuspended;
+	m_addChildStateHandler(childState);
 }
