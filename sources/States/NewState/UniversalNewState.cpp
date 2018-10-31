@@ -1,10 +1,10 @@
-#include "Win32NewState.h"
+#include "UniversalNewState.h"
 
 #include <States/ViewState/Win32ViewState.h>
 
 #include <curses.h>
 
-void Win32NewState::Run()
+void UniversalNewState::Run()
 {
 	initscr();
 	raw();

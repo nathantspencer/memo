@@ -1,4 +1,5 @@
 #include <States/StateDriver.h>
+#include <States/StateFactory.h>
 
 #include <curses.h>
 
@@ -15,37 +16,10 @@ int main(int argc, char* argv[])
 		std::string argument = argv[1];
 		std::transform(argument.begin(), argument.end(), argument.begin(), tolower);
 
-		StateDriver driver;
-
+		StateDriver stateDriver;
 		if (argument == "new")
 		{
-			initscr();
-			raw();
-			keypad(stdscr, TRUE);
-			noecho();
-
-#ifdef WIN32
-			halfdelay(5);
-#endif
-
-			do
-			{
-				refresh();
-#ifdef WIN32
-				int columns, rows;
-
-				bool x = consoleHandle == INVALID_HANDLE_VALUE;
-				GetConsoleScreenBufferInfo(consoleHandle, &consoleInfo);
-
-				columns = consoleInfo.srWindow.Right - consoleInfo.srWindow.Left + 1;
-				rows = consoleInfo.srWindow.Bottom - consoleInfo.srWindow.Top + 1;
-#endif
-				
-			} while (getch());
-
-			endwin();
-
-			return 0;
+			stateDriver.PushState(StateFactory::CreateNewState());
 		}
 		else if (argument == "view")
 		{
@@ -60,6 +34,5 @@ int main(int argc, char* argv[])
 		std::cout << "\n\t" << "memo new     begin a new memo";
 		std::cout << "\n\t" << "memo view    browse saved memos" << "\n";
 	}
-		
 	return 0;
 }
