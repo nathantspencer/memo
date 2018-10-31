@@ -1,5 +1,5 @@
 #include "Win32ViewState.h"
 
-void Win32ViewState::Run()
+void Win32ViewState::Execute()
 {
 }

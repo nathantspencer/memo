@@ -4,7 +4,7 @@
 
 #include <curses.h>
 
-void UniversalNewState::Run()
+void UniversalNewState::Execute()
 {
 	initscr();
 	raw();

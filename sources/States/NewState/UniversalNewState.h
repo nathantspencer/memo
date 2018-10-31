@@ -8,5 +8,5 @@
 class UniversalNewState : public INewState
 {
 public:
-	virtual void Run();
+	virtual void Execute();
 };

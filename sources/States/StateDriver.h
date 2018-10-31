@@ -13,8 +13,9 @@
 class StateDriver
 {
 public:
-	/*! Suspends the current state if one exists, adds the given state
-	 *  to the top of the stack, and executes it.
+	/*! Adds the given state to the top of the stack and executes it.
+	 *
+	 *  @param  state  state to add to top of stack and execute
 	 */
 	void PushState(IStatePtr state);
 

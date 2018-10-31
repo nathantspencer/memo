@@ -2,6 +2,7 @@
 #include <functional>
 #include <memory>
 
+class IState;
 typedef std::shared_ptr<IState> IStatePtr;
 
 /*! Interface for application states, which draw the GUI and take
