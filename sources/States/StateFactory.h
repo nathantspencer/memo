@@ -10,9 +10,17 @@
  */
 namespace StateFactory
 {
-	// TODO: Doxygen comment
+	/*! Creates and returns a shared pointer to an implementation of
+	 *  `INewState` appropriate for the current platform.
+	 *
+	 *  @return  a shared pointer to the created 'new' state
+	 */
 	std::shared_ptr<INewState> CreateNewState();
 
-	// TODO: Doxygen comment
+	/*! Creates and returns a shared pointer to an implementation of
+	 *  `IViewState` appropriate for the current platform.
+	 *
+	 *  @return  a shared pointer to the created 'view' state
+	 */
 	std::shared_ptr<IViewState> CreateViewState();
 };
