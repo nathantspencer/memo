@@ -7,5 +7,6 @@
  */
 class INewState : public IState
 {
+public:
 	virtual ~INewState() {};
 };
