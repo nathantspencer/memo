@@ -7,4 +7,5 @@
  */
 class IViewState : public IState
 {
+	virtual ~IViewState() {};
 };

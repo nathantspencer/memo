@@ -13,6 +13,8 @@ typedef std::shared_ptr<IState> IStatePtr;
 class IState
 {
 public:
+	virtual ~IState() {};
+
 	/*! Adds a callback for the state's termination. Useful for classes that manage states.
 	 *
 	 *  @param  terminateHandler  callback for the state's termination
