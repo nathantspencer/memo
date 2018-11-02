@@ -7,7 +7,6 @@
 void UniversalNewState::Execute()
 {
 	initscr();
-	raw();
 	noecho();
 	keypad(stdscr, TRUE);
 	nodelay(stdscr, TRUE);
@@ -19,7 +18,6 @@ void UniversalNewState::Execute()
 	int key;
 	while (key = getch())
 	{
-		curs_set(0);
 		if (key == KEY_RESIZE)
 		{
 			resize_term(0, 0);
@@ -29,13 +27,24 @@ void UniversalNewState::Execute()
 		mvwprintw(dateTimePanel, 0, 0, " 9/27/18");
 		mvwprintw(dateTimePanel, 1, 0, "10:03 PM");
 		mvwvline(dateTimePanel, 0, 10, ACS_VLINE, LINES - 2);
-		wmove(textPanel, 0, 0);
-		waddch(textPanel, key);
+
+		if (key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT || key == KEY_RIGHT)
+		{
+			std::pair<int, int> cursorOffset;
+			cursorOffset.first = (key == KEY_UP ? -1 : 0) + (key == KEY_DOWN ? 1 : 0);
+			cursorOffset.second = (key == KEY_LEFT ? -1 : 0) + (key == KEY_RIGHT ? 1 : 0);
+			wmove(textPanel, getcury(textPanel) + cursorOffset.first, getcurx(textPanel) + cursorOffset.second);
+		}
+		else if (key != KEY_RESIZE && key != ERR)
+		{
+			waddch(textPanel, key);
+		}
 
 		wrefresh(dateTimePanel);
-		wrefresh(textPanel);
-		refresh();
 		curs_set(1);
+		wrefresh(textPanel);
+		curs_set(0);
+		refresh();
 	}
 
 	delwin(dateTimePanel);
