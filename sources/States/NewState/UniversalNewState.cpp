@@ -10,6 +10,7 @@ enum CursorDirection { UP, DOWN, LEFT, RIGHT };
 /// -- Wraps over the ends of lines when moving left/right
 static void MoveCursor(WINDOW* panel, CursorDirection direction)
 {
+	// TODO: fix up/down
 	if (direction == UP || direction == DOWN)
 	{
 		wmove(panel, getcury(panel) + !!(direction == UP), getcurx(panel) + !!(direction == DOWN));
