@@ -44,14 +44,12 @@ void UniversalNewState::Execute()
 	initscr();
 	noecho();
 	keypad(stdscr, TRUE);
-	nodelay(stdscr, TRUE);
-	curs_set(0);
 
 	WINDOW* dateTimePanel = newwin(LINES - 2, 11, 1, 2);
 	WINDOW* textPanel = newwin(LINES - 2, COLS - 17, 1, 15);
 
-	int key;
-	while (key = getch())
+	int key = KEY_RESIZE;
+	do
 	{
 		if (key == KEY_RESIZE)
 		{
@@ -91,12 +89,14 @@ void UniversalNewState::Execute()
 			waddch(textPanel, key);
 		}
 
-		wrefresh(dateTimePanel);
-		curs_set(1);
-		wrefresh(textPanel);
+		move(getbegy(textPanel) + getcury(textPanel), getbegx(textPanel) + getcurx(textPanel));
 		curs_set(0);
+		wrefresh(dateTimePanel);
+		wrefresh(textPanel);
+		curs_set(1);
 		refresh();
 	}
+	while (key = getch());
 
 	delwin(dateTimePanel);
 }
