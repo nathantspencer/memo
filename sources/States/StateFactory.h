@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 
 #include <States/NewState/INewState.h>
 #include <States/ViewState/IViewState.h>

@@ -14,11 +14,13 @@ include_directories(libs/PDCurses)
 #=====================================================================================#
 
 file(GLOB SOURCES sources/*.cpp sources/*.h)
+file(GLOB CURSES sources/Curses/*.cpp sources/Curses/*.h)
 file(GLOB STATES sources/States/*.cpp sources/States/*.h)
 file(GLOB STATES_NEW sources/States/NewState/*.cpp sources/States/NewState/*.h)
 file(GLOB STATES_VIEW sources/States/ViewState/*.cpp sources/States/ViewState/*.h)
 
 source_group("" FILES ${SOURCES})
+source_group("Curses" FILES ${CURSES})
 source_group("States" FILES ${STATES})
 source_group("States\\NewState" FILES ${STATES_NEW})
 source_group("States\\ViewState" FILES ${STATES_VIEW})
