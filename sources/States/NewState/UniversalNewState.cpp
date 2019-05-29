@@ -4,38 +4,49 @@
 
 #include <curses.h>
 
-enum CursorDirection { UP, DOWN, LEFT, RIGHT };
+static enum CursorDirection { UP, DOWN, LEFT, RIGHT };
 
-/// -- Moves the cursor by one character in the given direction/panel
-/// -- Wraps over the ends of lines when moving left/right
-static void MoveCursor(WINDOW* panel, CursorDirection direction)
+
+static bool IsYXInWindow(WINDOW* window, int y, int x)
 {
-	// TODO: fix up/down
-	if (direction == UP || direction == DOWN)
+	return x >= 0 && x < window->_maxx && y >= 0 && y < window->_maxy;
+}
+
+static void MoveCursor(WINDOW* window, CursorDirection direction)
+{
+	int y = getcury(window);
+	int x = getcurx(window);
+
+	switch (direction)
 	{
-		wmove(panel, getcury(panel) + !!(direction == UP), getcurx(panel) + !!(direction == DOWN));
-	}
-	else if (direction == LEFT)
-	{
-		if (!getcurx(panel) && !!getcury(panel))
+	case UP:
+		wmove(window, y - 1, x);
+		break;
+	case DOWN:
+		wmove(window, y + 1, x);
+		break;
+	case LEFT:
+		if (IsYXInWindow(window, y, x - 1))
 		{
-			wmove(panel, getcury(panel) - 1, panel->_maxx - 1);
+			wmove(window, y, x - 1);
 		}
 		else
 		{
-			wmove(panel, getcury(panel), getcurx(panel) - 1);
+			wmove(window, y - 1, window->_maxx - 1);
 		}
-	}
-	else if (direction == RIGHT)
-	{
-		if (getcurx(panel) == panel->_maxx - 1 && getcury(panel) != panel->_maxx)
+		break;
+	case RIGHT:
+		if (IsYXInWindow(window, y, x + 1))
 		{
-			wmove(panel, getcury(panel) + 1, 0);
+			wmove(window, y, x + 1);
 		}
 		else
 		{
-			wmove(panel, getcury(panel), getcurx(panel) + 1);
+			wmove(window, y + 1, 0);
 		}
+		break;
+	default:
+		break;
 	}
 }
 
