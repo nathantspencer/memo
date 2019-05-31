@@ -45,13 +45,14 @@ void UniversalNewState::Execute()
 		else if (key == 8) // TODO: fix this hack for PC backspace
 		{
 			MoveTextWindowCursor(curses::left);
-			waddch(dateTimeWindow, ' '); // TODO: is there a better empty character that can be used?
+			waddch(m_textWindow, ' ');
 			MoveTextWindowCursor(curses::left);
 			// TODO: backspace should shift all trailing characters to the left
+			// TODO: move end pos if needed
 		}
 		else if (key != KEY_RESIZE && key != ERR)
 		{
-			waddch(dateTimeWindow, key);
+			waddch(m_textWindow, key);
 		}
 
 		move(getbegy(m_textWindow) + getcury(m_textWindow), getbegx(m_textWindow) + getcurx(m_textWindow));
