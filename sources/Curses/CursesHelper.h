@@ -13,6 +13,7 @@ namespace curses
 	|*/
 	struct yx
 	{
+		yx() : y(0), x(0) {};
 		int y;
 		int x;
 	};
